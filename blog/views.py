@@ -2,10 +2,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.template.context_processors import csrf
 from .models import Post
-from .forms import PostForm, ChkForm
+from .forms import PostForm, ChkForm, Credits
 
 
 # Create your views here.
+def calc_credit(request):
+    credits = Credits()
+    return render(request, 'calc_credit.html', {'credits': credits})
+
+
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})

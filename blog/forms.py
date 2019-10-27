@@ -57,3 +57,15 @@ class ChkForm(forms.Form):
         disabled=False,
         widget=forms.RadioSelect(attrs={
           'id': 'five', 'class': 'form-check-input'}))
+
+
+class Credits(forms.Form):
+    lessons = (
+        (10010010, "スタートアップセミナー", 1),
+        (10110010, "総合英語Ｉａ", 2),
+        (10110020, "総合英語Ｉｂ", 2),
+    )
+
+    startupseminar = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple()
+    )

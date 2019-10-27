@@ -16,3 +16,21 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Credits(models.Model):
+    lessons = (
+        (10010010, "スタートアップセミナー", 1),
+        (10110010, "総合英語Ｉａ", 2),
+        (10110020, "総合英語Ｉｂ", 2),
+    )
+
+    field = {}
+
+    for lesson in lessons:
+        user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+        field[str(lesson[0]) + "DOING"] = models.BooleanField()
+        field[str(lesson[0]) + "DONE"] = models.BooleanField()
+
+    def __str__(self):
+        return "Lesson"
